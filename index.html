@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - Seu Melhor Amigo Merece o Melhor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>🐾 PetShop Express</h1>
+                <p class="tagline">Tudo para seus bichinhos de estimação</p>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#produtos">Produtos</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li class="carrinho-icon" onclick="abrirCarrinho()">
+                        🛒 Carrinho (<span id="qtd-carrinho">0</span>)
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner Principal -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2>Bem-vindo ao PetShop Express! 🎉</h2>
+            <p>Os melhores produtos e serviços para seus amigos peludos</p>
+            <button class="btn-principal" onclick="scrollPara('#produtos')">Conheça nossos Produtos</button>
+        </div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="servicos" class="servicos">
+        <div class="container">
+            <h2>Nossos Serviços</h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <span class="icon">✨</span>
+                    <h3>Banho & Tosa</h3>
+                    <p>Serviço profissional com produtos de qualidade</p>
+                </div>
+                <div class="servico-card">
+                    <span class="icon">💊</span>
+                    <h3>Consulta Veterinária</h3>
+                    <p>Atendimento com veterinários especializados</p>
+                </div>
+                <div class="servico-card">
+                    <span class="icon">🏥</span>
+                    <h3>Vacinação</h3>
+                    <p>Campanha de vacinação completa e segura</p>
+                </div>
+                <div class="servico-card">
+                    <span class="icon">🛏️</span>
+                    <h3>Hotel para Pets</h3>
+                    <p>Hospedagem confortável durante suas viagens</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Produtos -->
+    <section id="produtos" class="produtos">
+        <div class="container">
+            <h2>Nossos Produtos</h2>
+            <div class="filtro-categoria">
+                <button class="btn-filtro active" onclick="filtrarProdutos('todos')">Todos</button>
+                <button class="btn-filtro" onclick="filtrarProdutos('alimentos')">Alimentos</button>
+                <button class="btn-filtro" onclick="filtrarProdutos('brinquedos')">Brinquedos</button>
+                <button class="btn-filtro" onclick="filtrarProdutos('higiene')">Higiene</button>
+                <button class="btn-filtro" onclick="filtrarProdutos('acessorios')">Acessórios</button>
+            </div>
+
+            <div id="produtos-grid" class="produtos-grid">
+                <!-- Produtos serão carregados aqui pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal do Carrinho -->
+    <div id="modal-carrinho" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharCarrinho()">&times;</span>
+            <h2>Seu Carrinho 🛒</h2>
+            <div id="carrinho-itens" class="carrinho-itens">
+                <!-- Itens do carrinho serão mostrados aqui -->
+            </div>
+            <div class="carrinho-resumo">
+                <h3>Resumo do Pedido:</h3>
+                <p>Subtotal: R$ <span id="subtotal">0.00</span></p>
+                <p>Frete: R$ <span id="frete">10.00</span></p>
+                <hr>
+                <p class="total">Total: R$ <span id="total">10.00</span></p>
+            </div>
+            <button class="btn-compra" onclick="iniciarCompra()">Finalizar Compra</button>
+            <button class="btn-continuar" onclick="fecharCarrinho()">Continuar Comprando</button>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Compra -->
+    <div id="modal-confirmacao" class="modal">
+        <div class="modal-content confirmacao">
+            <h2>✅ Compra Realizada com Sucesso!</h2>
+            <div class="confirmacao-conteudo">
+                <p class="numero-pedido">Número do Pedido: <strong>#PET<span id="numero-pedido"></span></strong></p>
+                <p>Obrigado por comprar no PetShop Express!</p>
+                <p>Seus produtos serão entregues em breve.</p>
+                <p class="tempo-entrega">Tempo estimado de entrega: <strong>3-5 dias úteis</strong></p>
+            </div>
+            <button class="btn-ok" onclick="fecharConfirmacao()">Voltar às Compras</button>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes do Produto -->
+    <div id="modal-detalhes" class="modal">
+        <div class="modal-content detalhes">
+            <span class="close" onclick="fecharDetalhes()">&times;</span>
+            <div class="detalhes-container">
+                <img id="detalhes-imagem" src="" alt="Produto">
+                <div class="detalhes-info">
+                    <h2 id="detalhes-nome"></h2>
+                    <p id="detalhes-descricao"></p>
+                    <p class="preco">R$ <span id="detalhes-preco"></span></p>
+                    <div class="quantidade-selector">
+                        <label for="qtd">Quantidade:</label>
+                        <input type="number" id="qtd" value="1" min="1" max="10">
+                    </div>
+                    <button class="btn-adicionar-grande" onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 PetShop Express - Todos os direitos reservados | Cuidando do seu pet com amor! 🐾</p>
+            <p>Contato: (11) 98765-4321 | Email: contato@petshopexpress.com.br</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

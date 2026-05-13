@@ -1,0 +1,5 @@
+site para Petshop com varios servicos e produtos para todos os tipos de animais domesticos 
+quero cores claras e divertidas, algo atria o publico algo, com efeitos 
+por enquanto quero so o html, css e javascript simulando comercio eletronico real
+quero imagens publicas reais 
+QUero que as pessoas consigam inserir produtos no carrinho e simular uma compra 
